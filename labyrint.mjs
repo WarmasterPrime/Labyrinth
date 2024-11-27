@@ -56,7 +56,7 @@ const HP_MAX = 10;
 
 const playerStats = {
 	hp: 8,
-	chash: 0
+	cash: 0
 }
 
 class Labyrinth {
@@ -99,7 +99,7 @@ class Labyrinth {
 			let currentItem = level[tRow][tcol];
 			if (currentItem == LOOT) {
 				let loot = Math.round(Math.random() * 7) + 3;
-				playerStats.chash += loot;
+				playerStats.cash += loot;
 				eventText = `Player gained ${loot}$`;
 			}
 
@@ -155,7 +155,7 @@ class Labyrinth {
 
 function renderHud() {
 	let hpBar = `Life:[${ANSI.COLOR.RED + pad(playerStats.hp, "♥︎") + ANSI.COLOR_RESET}${ANSI.COLOR.LIGHT_GRAY + pad(HP_MAX - playerStats.hp, "♥︎") + ANSI.COLOR_RESET}]`
-	let cash = `$:${playerStats.chash}`;
+	let cash = `$:${playerStats.cash}`;
 	return `${hpBar} ${cash}\n`;
 }
 
