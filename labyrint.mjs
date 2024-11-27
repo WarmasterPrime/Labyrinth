@@ -5,21 +5,21 @@ import * as CONST from "./constants.mjs";
 
 
 const STARTING_LEVEL = CONST.START_LEVEL_ID;
-const LEVELS = loadLevelListings();
+const LEVELS = Labyrinth.loadLevelListings();
 
-function loadLevelListings(source = CONST.LEVEL_LISTING_FILE) {
-	let data = readRecordFile(source);
-	let levels = {};
-	for (const item of data) {
-		let keyValue = item.split(":");
-		if (keyValue.length >= 2) {
-			let key = keyValue[0];
-			let value = keyValue[1];
-			levels[key] = value;
-		}
-	}
-	return levels;
-}
+//function loadLevelListings(source = CONST.LEVEL_LISTING_FILE) {
+//	let data = readRecordFile(source);
+//	let levels = {};
+//	for (const item of data) {
+//		let keyValue = item.split(":");
+//		if (keyValue.length >= 2) {
+//			let key = keyValue[0];
+//			let value = keyValue[1];
+//			levels[key] = value;
+//		}
+//	}
+//	return levels;
+//}
 
 //let levelData = readMapFile(LEVELS[STARTING_LEVEL]);
 let level = readMapFile(LEVELS[STARTING_LEVEL]);
@@ -60,6 +60,12 @@ const playerStats = {
 }
 
 class Labyrinth {
+
+
+	get levels() {
+		return Labyrinth.loadLevelListings();
+	}
+
 
 	update() {
 
@@ -151,13 +157,34 @@ class Labyrinth {
 			eventText = "";
 		}
 	}
+
+	static loadLevelListings() {
+		let data = readRecordFile(source);
+		let levels = {};
+		for (const item of data) {
+			let keyValue = item.split(":");
+			if (keyValue.length >= 2) {
+				let key = keyValue[0];
+				let value = keyValue[1];
+				levels[key] = value;
+			}
+		}
+		return levels;
+	}
+
+	static renderHud() {
+		let hpBar = `Life:[${ANSI.COLOR.RED + pad(playerStats.hp, "♥︎") + ANSI.COLOR_RESET}${ANSI.COLOR.LIGHT_GRAY + pad(HP_MAX - playerStats.hp, "♥︎") + ANSI.COLOR_RESET}]`
+		let cash = `$:${playerStats.cash}`;
+		return `${hpBar} ${cash}\n`;
+	}
+
 }
 
-function renderHud() {
-	let hpBar = `Life:[${ANSI.COLOR.RED + pad(playerStats.hp, "♥︎") + ANSI.COLOR_RESET}${ANSI.COLOR.LIGHT_GRAY + pad(HP_MAX - playerStats.hp, "♥︎") + ANSI.COLOR_RESET}]`
-	let cash = `$:${playerStats.cash}`;
-	return `${hpBar} ${cash}\n`;
-}
+//function renderHud() {
+//	let hpBar = `Life:[${ANSI.COLOR.RED + pad(playerStats.hp, "♥︎") + ANSI.COLOR_RESET}${ANSI.COLOR.LIGHT_GRAY + pad(HP_MAX - playerStats.hp, "♥︎") + ANSI.COLOR_RESET}]`
+//	let cash = `$:${playerStats.cash}`;
+//	return `${hpBar} ${cash}\n`;
+//}
 
 function pad(len, text) {
 	let output = "";
