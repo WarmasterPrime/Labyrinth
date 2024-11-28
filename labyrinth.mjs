@@ -16,9 +16,7 @@ class Labyrinth {
 	constructor() {
 		//this.level = undefined;
 		this.#levels = Labyrinth.loadLevelListings();
-		console.log(this.#levels);
 		this.level = FileManager.readMapFile(this.#levels[CONSTANTS.startLevelId]);
-		console.log("\"" + this.#levels[CONSTANTS.startLevelId] + "\"");
 	}
 	/**
 	 * Gets the levels.
@@ -54,27 +52,20 @@ class Labyrinth {
 				}
 			}
 		}
-
 		let drow = 0;
 		let dcol = 0;
-
 		if (KeyBoardManager.isUpPressed()) {
 			drow = -1;
 		} else if (KeyBoardManager.isDownPressed()) {
 			drow = 1;
 		}
-
 		if (KeyBoardManager.isLeftPressed()) {
 			dcol = -1;
 		} else if (KeyBoardManager.isRightPressed()) {
 			dcol = 1;
 		}
-
 		let tRow = ENTITIES.hero.position.y + (1 * drow);
 		let tcol = ENTITIES.hero.position.x + (1 * dcol);
-
-		console.log(this.currentLevel);
-
 		if (THINGS.includes(this.currentLevel[tRow][tcol])) { // Is there anything where Hero is moving to
 			let currentItem = level[tRow][tcol];
 			if (currentItem == LOOT) {
@@ -82,15 +73,12 @@ class Labyrinth {
 				ENTITIES.hero.cash += loot;
 				eventText = `Player gained ${loot}$`;
 			}
-
 			// Move the HERO
 			level[ENTITIES.hero.position.y][ENTITIES.hero.position.x] = EMPTY;
 			level[tRow][tcol] = ENTITIES.hero.display;
-
 			// Update the HERO
 			ENTITIES.hero.position.y = tRow;
 			ENTITIES.hero.position.x = tCol;
-
 			// Make the draw function draw.
 			isDirty = true;
 		} else {
@@ -102,7 +90,6 @@ class Labyrinth {
 	 * @returns {undefined}
 	 */
 	draw() {
-
 		if (isDirty == false)
 			return;
 		isDirty = false;
@@ -179,8 +166,5 @@ let eventText = "";
 
 const HP_MAX = 10;
 const ENTITIES = {hero: new Entity("Hero", HERO)};
-
-
-
 
 export default Labyrinth;
