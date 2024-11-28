@@ -6,9 +6,6 @@ import Entity from "./data/entity.mjs";
 import Position from "./data/position.mjs";
 import KeyValuePair from "./data/keyValuePair.mjs";
 
-
-
-
 class Labyrinth {
 
 	#levels;
