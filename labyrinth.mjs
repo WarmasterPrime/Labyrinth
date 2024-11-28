@@ -4,9 +4,18 @@ import FileManager from "./utils/fileHelpers.mjs";
 import {CONSTANTS} from "./constants.mjs";
 import Entity from "./data/entity.mjs";
 import Position from "./data/position.mjs";
+import KeyValuePair from "./data/keyValuePair.mjs";
+
+
+
 
 class Labyrinth {
 
+
+	constructor() {
+		console.warn(LEVELS);
+		this.level = FileManager.readMapFile(LEVELS[CONSTANTS.startLevelId]);
+	}
 
 	get levels() {
 		return Labyrinth.loadLevelListings();
@@ -47,7 +56,7 @@ class Labyrinth {
 
 		let tRow = ENTITIES.hero.position.y + (1 * drow);
 		let tcol = ENTITIES.hero.position.x + (1 * dcol);
-		if (THINGS.includes(level[tRow][tcol])) { // Is there anything where Hero is moving to
+		if (THINGS.includes(this.level[tRow][tcol])) { // Is there anything where Hero is moving to
 			let currentItem = level[tRow][tcol];
 			if (currentItem == LOOT) {
 				let loot = Math.round(Math.random() * 7) + 3;
@@ -109,13 +118,9 @@ class Labyrinth {
 		let levels = {};
 		for (const item of data) {
 			let keyValue = item.split(":");
-			if (keyValue.length >= 2) {
-				let key = keyValue[0];
-				let value = keyValue[1];
-				levels[key] = value;
-			}
+			let itm = new KeyValuePair(keyValue[0], keyValue[1]);
+			levels[itm.key] = itm.value;
 		}
-		console.log(levels);
 		return levels;
 	}
 
@@ -134,5 +139,37 @@ class Labyrinth {
 	}
 
 }
+
+const STARTING_LEVEL = CONSTANTS.startLevelId;
+const LEVELS = Labyrinth.loadLevelListings();
+
+let pallet = {
+	"█": ANSI.COLOR.LIGHT_GRAY,
+	"H": ANSI.COLOR.RED,
+	"$": ANSI.COLOR.YELLOW,
+	"B": ANSI.COLOR.GREEN,
+}
+
+
+let isDirty = true;
+
+
+const EMPTY = " ";
+const HERO = "H";
+const LOOT = "$"
+
+let direction = -1;
+
+let items = [];
+
+const THINGS = [LOOT, EMPTY];
+
+let eventText = "";
+
+const HP_MAX = 10;
+const ENTITIES = {hero: new Entity("Hero", HERO)};
+
+
+
 
 export default Labyrinth;

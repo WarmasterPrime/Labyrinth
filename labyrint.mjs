@@ -7,8 +7,7 @@ import Position from "./data/position.mjs";
 
 import Labyrinth from "./labyrinth.mjs";
 
-const STARTING_LEVEL = CONST.START_LEVEL_ID;
-const LEVELS = Labyrinth.loadLevelListings();
+
 
 //function loadLevelListings(source = CONST.LEVEL_LISTING_FILE) {
 //	let data = readRecordFile(source);
@@ -25,38 +24,15 @@ const LEVELS = Labyrinth.loadLevelListings();
 //}
 
 //let levelData = readMapFile(LEVELS[STARTING_LEVEL]);
-console.log(LEVELS);
-let level = FileManager.readMapFile(LEVELS[STARTING_LEVEL]);
-
-
-let pallet = {
-	"█": ANSI.COLOR.LIGHT_GRAY,
-	"H": ANSI.COLOR.RED,
-	"$": ANSI.COLOR.YELLOW,
-	"B": ANSI.COLOR.GREEN,
-}
-
-
-let isDirty = true;
-
-
-const EMPTY = " ";
-const HERO = "H";
-const LOOT = "$"
-
-let direction = -1;
-
-let items = [];
-
-const THINGS = [LOOT, EMPTY];
-
-let eventText = "";
-
-const HP_MAX = 10;
+//console.log(LEVELS);
+//let level = FileManager.readMapFile(LEVELS[STARTING_LEVEL]);
 
 
 
-const ENTITIES = {hero: new Entity("Hero", HERO)};
+
+
+
+
 
 
 
