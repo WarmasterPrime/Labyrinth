@@ -1,20 +1,40 @@
 import fs from "node:fs";
-import { MAP_DIRECTORY } from "../constants.mjs";
+import { CONSTANTS } from "../constants.mjs";
 
 
-function readMapFile(fileName) {
-    let data = fs.readFileSync(`${MAP_DIRECTORY}${fileName.trim()}`, { encoding: "utf8" });
-    data = data.split("\n");
-    data = data.reduce((prev, curr) => {
-        prev.push(curr.split(""));
-        return prev;
-    }, []);
-    return data;
+class FileManager {
+
+    static readFromFile(fileName) {
+        return fs.readFileSync(`${CONSTANTS.mapDirectory}${fileName.trim()}`, {encoding: "utf8"});
+    }
+
+    static readMapFile(fileName) {
+        console.log(fileName);
+        console.trace();
+        return FileManager.readFromFile(fileName.trim()).split("\n").reduce((prev, curr) => {
+            prev.push(curr.split(""));
+        }, []);
+    }
+
+    static readRecordFile(fileName) {
+        return fs.readFileSync(fileName, {encoding: "utf8"});
+    }
+
 }
 
-function readRecordFile(fileName) {
-    let data = fs.readFileSync(fileName, { encoding: "utf8" });
-    return data.split("\n");
-}
+//function readMapFile(fileName) {
+//    let data = fs.readFileSync(`${MAP_DIRECTORY}${fileName.trim()}`, { encoding: "utf8" });
+//    data = data.split("\n");
+//    data = data.reduce((prev, curr) => {
+//        prev.push(curr.split(""));
+//        return prev;
+//    }, []);
+//    return data;
+//}
 
-export { readMapFile, readRecordFile }
+//function readRecordFile(fileName) {
+//    let data = fs.readFileSync(fileName, { encoding: "utf8" });
+//    return data.split("\n");
+//}
+
+export default FileManager;
