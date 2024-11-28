@@ -11,10 +11,14 @@ import KeyValuePair from "./data/keyValuePair.mjs";
 
 class Labyrinth {
 
+	#levels;
 
 	constructor() {
+		//this.level = undefined;
 		this.#levels = Labyrinth.loadLevelListings();
-		this.level = FileManager.readMapFile(this.[CONSTANTS.startLevelId]);
+		console.log(this.#levels);
+		this.level = FileManager.readMapFile(this.#levels[CONSTANTS.startLevelId]);
+		console.log("\"" + this.#levels[CONSTANTS.startLevelId] + "\"");
 	}
 	/**
 	 * Gets the levels.
@@ -69,9 +73,9 @@ class Labyrinth {
 		let tRow = ENTITIES.hero.position.y + (1 * drow);
 		let tcol = ENTITIES.hero.position.x + (1 * dcol);
 
-		console.log(this.level);
+		console.log(this.currentLevel);
 
-		if (THINGS.includes(this.level[tRow][tcol])) { // Is there anything where Hero is moving to
+		if (THINGS.includes(this.currentLevel[tRow][tcol])) { // Is there anything where Hero is moving to
 			let currentItem = level[tRow][tcol];
 			if (currentItem == LOOT) {
 				let loot = Math.round(Math.random() * 7) + 3;
@@ -105,10 +109,10 @@ class Labyrinth {
 		console.log(ANSI.CLEAR_SCREEN, ANSI.CURSOR_HOME);
 		let rendring = "";
 		rendring += Labyrinth.renderHud();
-		for (let row = 0; row < level.length; row++) {
+		for (let row = 0; row < this.currentLevel.length; row++) {
 			let rowRendering = "";
-			for (let col = 0; col < level[row].length; col++) {
-				let symbol = level[row][col];
+			for (let col = 0; col < this.currentLevel[row].length; col++) {
+				let symbol = this.currentLevel[row][col];
 				rowRendering += pallet[symbol] === undefined ? symbol : pallet[symbol] + symbol + ANSI.COLOR_RESET;
 			}
 			rendring += rowRendering + "\n";

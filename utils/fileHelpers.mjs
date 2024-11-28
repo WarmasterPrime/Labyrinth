@@ -5,22 +5,20 @@ import { CONSTANTS } from "../constants.mjs";
 class FileManager {
 
     static readFromFile(fileName) {
-        return fs.readFileSync(`${CONSTANTS.mapDirectory}${fileName.trim()}`, {encoding: "utf8"}).replace("\r", "");
+        return fs.readFileSync(`${CONSTANTS.mapDirectory}${fileName.trim()}`, {encoding: "utf8"}).replaceAll("\r", "");
     }
 
     static readMapFile(fileName) {
-        console.log("PASSED");
+        console.log(`FileName: \"${fileName}\"`);
+        console.log(FileManager.readFromFile(fileName));
         console.trace();
-        return FileManager.readFromFile(fileName).split("\n").reduce((prev, curr) => {
-            if (prev === undefined) {
-                prev = [];
-            }
-            prev.push(curr.split(""));
-        }, []);
+        let res = FileManager.readFromFile(fileName).split("\n");
+        console.warn(res);
+        return res;
     }
 
     static readRecordFile(fileName) {
-        return fs.readFileSync(fileName.trim(), {encoding: "utf8"}).replace("\r", "").split("\n");
+        return fs.readFileSync(fileName.trim(), {encoding: "utf8"}).replaceAll("\r", "").split("\n");
     }
 
 }
