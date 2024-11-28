@@ -13,15 +13,27 @@ class Labyrinth {
 
 
 	constructor() {
-		console.warn(LEVELS);
-		this.level = FileManager.readMapFile(LEVELS[CONSTANTS.startLevelId]);
+		this.#levels = Labyrinth.loadLevelListings();
+		this.level = FileManager.readMapFile(this.[CONSTANTS.startLevelId]);
 	}
-
+	/**
+	 * Gets the levels.
+	 * @return {object}
+	 */
 	get levels() {
-		return Labyrinth.loadLevelListings();
+		return this.#levels;
 	}
 
+	get currentLevel() {
+		return this.level;
+	}
 
+	set currentLevel(levelName) {
+		this.level = this.levels[levelName];
+	}
+	/**
+	 * Updates the data for all entities and objects.
+	 */
 	update() {
 
 		if (ENTITIES.hero.position.x == null) {
@@ -56,6 +68,9 @@ class Labyrinth {
 
 		let tRow = ENTITIES.hero.position.y + (1 * drow);
 		let tcol = ENTITIES.hero.position.x + (1 * dcol);
+
+		console.log(this.level);
+
 		if (THINGS.includes(this.level[tRow][tcol])) { // Is there anything where Hero is moving to
 			let currentItem = level[tRow][tcol];
 			if (currentItem == LOOT) {
@@ -78,34 +93,26 @@ class Labyrinth {
 			direction *= -1;
 		}
 	}
-
+	/**
+	 * Renders all of the game objects.
+	 * @returns {undefined}
+	 */
 	draw() {
 
-		if (isDirty == false) {
+		if (isDirty == false)
 			return;
-		}
 		isDirty = false;
-
 		console.log(ANSI.CLEAR_SCREEN, ANSI.CURSOR_HOME);
-
 		let rendring = "";
-
 		rendring += Labyrinth.renderHud();
-
 		for (let row = 0; row < level.length; row++) {
 			let rowRendering = "";
 			for (let col = 0; col < level[row].length; col++) {
 				let symbol = level[row][col];
-				if (pallet[symbol] != undefined) {
-					rowRendering += pallet[symbol] + symbol + ANSI.COLOR_RESET;
-				} else {
-					rowRendering += symbol;
-				}
+				rowRendering += pallet[symbol] === undefined ? symbol : pallet[symbol] + symbol + ANSI.COLOR_RESET;
 			}
-			rowRendering += "\n";
-			rendring += rowRendering;
+			rendring += rowRendering + "\n";
 		}
-
 		console.log(rendring);
 		if (eventText != "") {
 			console.log(eventText);
