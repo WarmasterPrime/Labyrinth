@@ -15,8 +15,6 @@ class Labyrinth {
 		this.#levels = Labyrinth.loadLevelListings();
 		//let tmp = FileManager.readMapFile(this.#levels[CONSTANTS.startLevelId]);
 		this.level = FileManager.readMapFile(this.#levels[CONSTANTS.startLevelId]);
-
-
 		entities.hero.position = this.getHeroPosition();
 	}
 	/**
@@ -38,11 +36,9 @@ class Labyrinth {
 	 * Updates the data for all entities and objects.
 	 */
 	update() {
-
 		if (KeyBoardManager.isQuitPressed()) {
 			process.exit();
 		}
-
 		if (entities.hero.position.x == null) {
 			for (let row = 0; row < this.currentLevel.length; row++) {
 				for (let col = 0; col < this.currentLevel[row].length; col++) {
@@ -216,9 +212,7 @@ let pallet = {
 	"B": ANSI.COLOR.GREEN,
 }
 
-
 let isDirty = true;
-
 
 const EMPTY = " ";
 const HERO = "H";
