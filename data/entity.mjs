@@ -1,4 +1,3 @@
-
 import Position from "./position.mjs";
 
 class Entity {
