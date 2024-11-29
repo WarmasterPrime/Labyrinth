@@ -1,4 +1,4 @@
-﻿import Entity from "./data/entity.mjs";
+﻿import Entity from "./entity.mjs";
 let entities = {
 	hero: new Entity("Hero", "H"),
 	empty: new Entity("Empty", " "),
