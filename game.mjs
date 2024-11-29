@@ -1,7 +1,8 @@
 import Labyrinth from "./labyrint.mjs"
 import ANSI from "./utils/ANSI.mjs";
 
-const REFRESH_RATE = 250;
+//const REFRESH_RATE = 250;
+const REFRESH_RATE = 100;
 
 console.log(ANSI.RESET, ANSI.CLEAR_SCREEN, ANSI.HIDE_CURSOR);
 
