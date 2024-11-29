@@ -14,9 +14,7 @@ class Labyrinth {
 	 * Creates a new instance of the Labyrinth class object.
 	 */
 	constructor() {
-		//this.level = undefined;
 		this.#levels = Labyrinth.loadLevelListings();
-		//let tmp = FileManager.readMapFile(this.#levels[CONSTANTS.startLevelId]);
 		this.level = FileManager.readMapFile(this.#levels[CONSTANTS.startLevelId]);
 		entities.hero.position = this.getHeroPosition();
 	}
@@ -71,7 +69,6 @@ class Labyrinth {
 		}
 		let tRow = entities.hero.position.y + drow; // Predicted Y position.
 		let tcol = entities.hero.position.x + dcol; // Predicted X position.
-
 		if (THINGS.includes(this.currentLevel[tRow][tcol])) { // Is there anything where Hero is moving to
 			let currentItem = this.currentLevel[tRow][tcol];
 			if (currentItem == entities.loot.display) {
