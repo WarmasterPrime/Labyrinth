@@ -24,7 +24,8 @@ const KEY_ID =
     right: "right",
     return: "return",
     escape: "escape",
-    r: "r"
+    r: "r",
+    q: "q"
 }
 
 const KEY_STATES = Object.keys(KEY_ID).reduce((prev, cur) => {
@@ -60,6 +61,9 @@ const KeyBoardManager = {
     },
     isRotatePressed: () => {
         return readKeyState(KEY_ID.r);
+    },
+    isQuitPressed: () => {
+        return readKeyState(KEY_ID.q);
     }
 
 }

@@ -9,11 +9,11 @@ class FileManager {
     }
 
     static readMapFile(fileName) {
-        console.log(`FileName: \"${fileName}\"`);
-        console.log(FileManager.readFromFile(fileName));
-        console.trace();
+        //console.log(`FileName: \"${fileName}\"`);
+        //console.log(FileManager.readFromFile(fileName));
+        //console.trace();
         let res = FileManager.readFromFile(fileName).split("\n");
-        console.warn(res);
+        //console.warn(res);
         return res;
     }
 
