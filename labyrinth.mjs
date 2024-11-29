@@ -36,7 +36,7 @@ class Labyrinth {
 	 * Updates the data for all entities and objects.
 	 */
 	update() {
-		if (KeyBoardManager.isQuitPressed())
+		if (KeyBoardManager.isQPressed())
 			process.exit();
 		if (entities.hero.position.x == null)
 			for (let row = 0; row < this.currentLevel.length; row++) {
