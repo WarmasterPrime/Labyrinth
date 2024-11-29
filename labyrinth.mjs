@@ -10,7 +10,9 @@ import KeyValuePair from "./data/keyValuePair.mjs";
 class Labyrinth {
 
 	#levels;
-
+	/**
+	 * Creates a new instance of the Labyrinth class object.
+	 */
 	constructor() {
 		//this.level = undefined;
 		this.#levels = Labyrinth.loadLevelListings();
@@ -25,11 +27,16 @@ class Labyrinth {
 	get levels() {
 		return this.#levels;
 	}
-
+	/**
+	 * Gets the current level object.
+	 * @returns {object[]}
+	 */
 	get currentLevel() {
 		return this.level;
 	}
-
+	/**
+	 * Sets the current level using the level name.
+	 */
 	set currentLevel(levelName) {
 		this.level = this.levels[levelName];
 	}
@@ -163,7 +170,11 @@ class Labyrinth {
 			eventText = "";
 		}
 	}
-
+	/**
+	 * Gets the levels available.
+	 * @param {string} source The source file.
+	 * @returns {object[]}
+	 */
 	static loadLevelListings(source = CONSTANTS.levelListingFile) {
 		let data = FileManager.readRecordFile(source);
 		let levels = {};
@@ -174,13 +185,21 @@ class Labyrinth {
 		}
 		return levels;
 	}
-
+	/**
+	 * Prepares the HUD graphics.
+	 * @returns {string}
+	 */
 	static renderHud() {
 		let hpBar = `Life:[${ANSI.COLOR.RED + Labyrinth.pad(entities.hero.hp, "♥︎") + ANSI.COLOR_RESET}${ANSI.COLOR.LIGHT_GRAY + Labyrinth.pad(HP_MAX - entities.hero.hp, "♥︎") + ANSI.COLOR_RESET}]`;
 		let cash = `$:${entities.hero.cash}`;
 		return `${hpBar} ${cash}\n`;
 	}
-
+	/**
+	 * Padds the given text with a specified number of spaces.
+	 * @param {int} len The number of spaces to pad the text.
+	 * @param {string} text The text to padd.
+	 * @returns {string}
+	 */
 	static pad(len, text) {
 		let output = "";
 		for (let i = 0; i < len; i++) {
@@ -188,7 +207,11 @@ class Labyrinth {
 		}
 		return output;
 	}
-
+	/**
+	 * Collapses the array into a string.
+	 * @param {*[]} array The array to collapse.
+	 * @returns {string}
+	 */
 	static #simplify(array) {
 		let res = "";
 		for (let i = 0; i < array.length; i++) {
