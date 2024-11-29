@@ -115,9 +115,8 @@ class Labyrinth {
 	 * @param {string} entityDisplay The entity to place.
 	 */
 	setBlockAt(x, y, entityDisplay) {
-		
 		let tmpRow = this.currentLevel[y].toString();
-
+		// Before you ask, the following code is to circumvent the issue involving read-only for the columns...
 		let res = "";
 		for (let i = 0; i < tmpRow.length; i++) {
 			res += i===x ? entityDisplay : tmpRow[i];
