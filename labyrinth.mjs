@@ -67,7 +67,7 @@ class Labyrinth {
 
 		if (THINGS.includes(this.currentLevel[tRow][tcol])) { // Is there anything where Hero is moving to
 			let currentItem = this.currentLevel[tRow][tcol];
-			if (currentItem == LOOT) {
+			if (currentItem == entities.loot.display) {
 				let loot = Math.round(Math.random() * 7) + 3;
 				entities.hero.cash += loot;
 				eventText = `Player gained $${loot}`;
@@ -217,7 +217,7 @@ let direction = -1;
 
 let items = [];
 
-const THINGS = [entities.loot.display entities.empty.display];
+const THINGS = [entities.loot.display, entities.empty.display];
 
 let eventText = "";
 
