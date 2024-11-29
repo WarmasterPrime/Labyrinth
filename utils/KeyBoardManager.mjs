@@ -48,7 +48,7 @@ let KeyBoardManager = {};
 
 {
     let item, value;
-    for ([item, value] of KEY_ID) {
+    for ([item, value] of Object.entries(KEY_ID)) {
         KeyBoardManager["is" + capitalize(item) + "Pressed"] = () => {
             return readKeyState(KEY_ID[item]);
         };
