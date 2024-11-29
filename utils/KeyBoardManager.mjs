@@ -25,7 +25,11 @@ const KEY_ID =
     return: "return",
     escape: "escape",
     r: "r",
-    q: "q"
+    q: "q",
+    w: "w",
+    a: "a",
+    s: "s",
+    d: "d"
 }
 
 const KEY_STATES = Object.keys(KEY_ID).reduce((prev, cur) => {
@@ -40,33 +44,47 @@ function readKeyState(key) {
     return value;
 }
 
-const KeyBoardManager = {
+let KeyBoardManager = {};
 
-    isEnterPressed: () => {
-        return readKeyState(KEY_ID.return);
-    },
-
-    isDownPressed: () => {
-
-        return readKeyState(KEY_ID.down);
-    },
-    isUpPressed: () => {
-        return readKeyState(KEY_ID.up);
-    },
-    isLeftPressed: () => {
-        return readKeyState(KEY_ID.left);
-    },
-    isRightPressed: () => {
-        return readKeyState(KEY_ID.right);
-    },
-    isRotatePressed: () => {
-        return readKeyState(KEY_ID.r);
-    },
-    isQuitPressed: () => {
-        return readKeyState(KEY_ID.q);
+{
+    let item, value;
+    for ([item, value] of KEY_ID) {
+        KeyBoardManager["is" + capitalize(item) + "Pressed"] = () => {
+            return readKeyState(KEY_ID[item]);
+        };
     }
-
 }
+
+//let KeyBoardManager = {
+
+//    isEnterPressed: () => {
+//        return readKeyState(KEY_ID.return);
+//    },
+
+//    isDownPressed: () => {
+
+//        return readKeyState(KEY_ID.down);
+//    },
+//    isUpPressed: () => {
+//        return readKeyState(KEY_ID.up);
+//    },
+//    isLeftPressed: () => {
+//        return readKeyState(KEY_ID.left);
+//    },
+//    isRightPressed: () => {
+//        return readKeyState(KEY_ID.right);
+//    },
+//    isRotatePressed: () => {
+//        return readKeyState(KEY_ID.r);
+//    },
+//    isWPressed: () => {
+//        return readKeyState(KEY_ID.w);
+//    },
+//    isQuitPressed: () => {
+//        return readKeyState(KEY_ID.q);
+//    }
+
+//}
 
 
 export default KeyBoardManager;

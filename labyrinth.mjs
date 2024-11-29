@@ -36,23 +36,19 @@ class Labyrinth {
 	 * Updates the data for all entities and objects.
 	 */
 	update() {
-		if (KeyBoardManager.isQuitPressed()) {
+		if (KeyBoardManager.isQuitPressed())
 			process.exit();
-		}
-		if (entities.hero.position.x == null) {
+		if (entities.hero.position.x == null)
 			for (let row = 0; row < this.currentLevel.length; row++) {
 				for (let col = 0; col < this.currentLevel[row].length; col++) {
 					if (level[row][col] == entities.hero.display) {
-						entities.hero.position.x = col;
-						entities.her.position.y = row;
+						this.setHero(col, row);
 						break;
 					}
 				}
-				if (entities.hero.position.y !== undefined) {
+				if (entities.hero.position.y !== undefined)
 					break;
-				}
 			}
-		}
 		let drow = 0;
 		let dcol = 0;
 		if (KeyBoardManager.isUpPressed()) {
