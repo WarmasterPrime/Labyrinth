@@ -7,7 +7,11 @@ class FileManager {
     static readFromFile(fileName) {
         return fs.readFileSync(`${CONSTANTS.mapDirectory}${fileName.trim()}`, {encoding: "utf8"}).replaceAll("\r", "");
     }
-
+    /**
+     * Gets the map file data.
+     * @param {any} fileName
+     * @returns
+     */
     static readMapFile(fileName) {
         //console.log(`FileName: \"${fileName}\"`);
         //console.log(FileManager.readFromFile(fileName));
