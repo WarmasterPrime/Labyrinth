@@ -14,7 +14,6 @@ process.stdin.on("keypress", (str, key) => {
 		KEY_STATES[key.name] = true;
 	}
 });
-
 let KeyBoardManager = {};
 initializeKeyboardManagerData();
 function initializeKeyboardManagerData() {
