@@ -1,5 +1,4 @@
-﻿
-const ENTITIES = {
+﻿const ENTITIES = {
 	hero: "H",
 	loot: "$",
 	empty: " ",
