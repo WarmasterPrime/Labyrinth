@@ -13,11 +13,7 @@ class FileManager {
 	 * @returns {string[]}
 	 */
 	static readMapFile(fileName) {
-		//console.log(`FileName: \"${fileName}\"`);
-		//console.log(FileManager.readFromFile(fileName));
-		//console.trace();
 		let res = FileManager.readFromFile(fileName).split("\n");
-		//console.warn(res);
 		return res;
 	}
 
@@ -26,20 +22,4 @@ class FileManager {
 	}
 
 }
-
-//function readMapFile(fileName) {
-//	let data = fs.readFileSync(`${MAP_DIRECTORY}${fileName.trim()}`, { encoding: "utf8" });
-//	data = data.split("\n");
-//	data = data.reduce((prev, curr) => {
-//		prev.push(curr.split(""));
-//		return prev;
-//	}, []);
-//	return data;
-//}
-
-//function readRecordFile(fileName) {
-//	let data = fs.readFileSync(fileName, { encoding: "utf8" });
-//	return data.split("\n");
-//}
-
 export default FileManager;
