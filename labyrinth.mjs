@@ -68,8 +68,6 @@ class Labyrinth {
 		let tRow = ENTITIES.hero.position.y + drow; // Predicted Y position.
 		let tcol = ENTITIES.hero.position.x + dcol; // Predicted X position.
 		
-		//console.log(tRow);
-
 		if (THINGS.includes(this.currentLevel[tRow][tcol])) { // Is there anything where Hero is moving to
 			let currentItem = level[tRow][tcol];
 			if (currentItem == LOOT) {
