@@ -13,7 +13,8 @@ class Labyrinth {
 	constructor() {
 		//this.level = undefined;
 		this.#levels = Labyrinth.loadLevelListings();
-		this.level = FileManager.readMapFile(this.#levels[CONSTANTS.startLevelId]);
+		let tmp = FileManager.readMapFile(this.#levels[CONSTANTS.startLevelId]);
+		this.level = tmp;
 		entities.hero.position = this.getHeroPosition();
 	}
 	/**
@@ -121,7 +122,11 @@ class Labyrinth {
 	 * @param {string} entityDisplay The entity to place.
 	 */
 	setBlockAt(x, y, entityDisplay) {
-		this.currentLevel[x][y] = entityDisplay;
+		console.log(Object.getOwnPropertyDescriptors(this.level));
+		let tmpRow = this.level[y].split("");
+		tmpRow[x] = Labyrinth.#simplify(entityDisplay);
+		this.level[y] = tmpRow;
+		//this.level[y][x] = entityDisplay;
 	}
 	/**
 	 * Gets the position of the hero in the level map.
@@ -194,6 +199,14 @@ class Labyrinth {
 			output += text;
 		}
 		return output;
+	}
+
+	static #simplify(array) {
+		let res = "";
+		for (let i = 0; i < array.length; i++) {
+			res += array[i];
+		}
+		return res;
 	}
 
 }
