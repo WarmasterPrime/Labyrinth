@@ -198,29 +198,18 @@ class Labyrinth {
 	}
 
 }
-
 let STARTING_LEVEL = CONSTANTS.startLevelId;
 let LEVELS = Labyrinth.loadLevelListings();
-
 let pallet = {
 	"█": ANSI.COLOR.LIGHT_GRAY,
 	"H": ANSI.COLOR.RED,
 	"$": ANSI.COLOR.YELLOW,
 	"B": ANSI.COLOR.GREEN,
 };
-
 let isDirty = true;
-
-
 let direction = -1;
-
 let items = [];
-
 const THINGS = [entities.loot.display, entities.empty.display];
-
 let eventText = "";
-
 const HP_MAX = 10;
-
-
 export default Labyrinth;
