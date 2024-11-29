@@ -29,32 +29,4 @@ function initializeKeyboardManagerData() {
 function addFunctionToKeyboardManager(key, value) {
 	KeyBoardManager[key] = value;
 }
-
-//let KeyBoardManager = {
-//	isEnterPressed: () => {
-//		return readKeyState(KEY_ID.return);
-//	},
-//	isDownPressed: () => {
-//		return readKeyState(KEY_ID.down);
-//	},
-//	isUpPressed: () => {
-//		return readKeyState(KEY_ID.up);
-//	},
-//	isLeftPressed: () => {
-//		return readKeyState(KEY_ID.left);
-//	},
-//	isRightPressed: () => {
-//		return readKeyState(KEY_ID.right);
-//	},
-//	isRotatePressed: () => {
-//		return readKeyState(KEY_ID.r);
-//	},
-//	isWPressed: () => {
-//		return readKeyState(KEY_ID.w);
-//	},
-//	isQuitPressed: () => {
-//		return readKeyState(KEY_ID.q);
-//	}
-//}
-
 export default KeyBoardManager;
