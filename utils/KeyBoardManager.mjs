@@ -1,4 +1,5 @@
 import * as readline from "node:readline"
+import capitalize from "../capitalizer.mjs";
 
 readline.emitKeypressEvents(process.stdin);
 if (process.stdin.isTTY) {

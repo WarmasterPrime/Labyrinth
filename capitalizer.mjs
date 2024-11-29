@@ -10,3 +10,4 @@ function capitalize(value) {
 	}
 	return res;
 }
+export default capitalize;
