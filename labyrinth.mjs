@@ -2,6 +2,7 @@
 import KeyBoardManager from "./utils/KeyBoardManager.mjs";
 import FileManager from "./utils/fileHelpers.mjs";
 import {CONSTANTS} from "./constants.mjs";
+import entities from "./data/entities.mjs";
 import Entity from "./data/entity.mjs";
 import Position from "./data/position.mjs";
 import KeyValuePair from "./data/keyValuePair.mjs";
@@ -224,10 +225,6 @@ const THINGS = [LOOT, EMPTY];
 let eventText = "";
 
 const HP_MAX = 10;
-let entities = {
-	hero: new Entity("Hero", HERO),
-	empty: new Entity("Empty", EMPTY),
-	door: new Entity("Door", DOOR)
-};
+
 
 export default Labyrinth;
