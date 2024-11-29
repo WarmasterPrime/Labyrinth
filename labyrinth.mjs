@@ -207,20 +207,17 @@ let pallet = {
 	"H": ANSI.COLOR.RED,
 	"$": ANSI.COLOR.YELLOW,
 	"B": ANSI.COLOR.GREEN,
-}
+};
 
 let isDirty = true;
 
-const EMPTY = " ";
 const HERO = "H";
-const LOOT = "$";
-const DOOR = "D";
 
 let direction = -1;
 
 let items = [];
 
-const THINGS = [LOOT, EMPTY];
+const THINGS = [entities.loot.display entities.empty.display];
 
 let eventText = "";
 
