@@ -120,7 +120,7 @@ class Labyrinth {
 	}
 
 	static renderHud() {
-		let hpBar = `Life:[${ANSI.COLOR.RED + Labyrinth.pad(ENTITIES.hero.hp, "♥︎") + ANSI.COLOR_RESET}${ANSI.COLOR.LIGHT_GRAY + Labyrinth.pad(HP_MAX - ENTITIES.hero.hp, "♥︎") + ANSI.COLOR_RESET}]`
+		let hpBar = `Life:[${ANSI.COLOR.RED + Labyrinth.pad(ENTITIES.hero.hp, "♥︎") + ANSI.COLOR_RESET}${ANSI.COLOR.LIGHT_GRAY + Labyrinth.pad(HP_MAX - ENTITIES.hero.hp, "♥︎") + ANSI.COLOR_RESET}]`;
 		let cash = `$:${ENTITIES.hero.cash}`;
 		return `${hpBar} ${cash}\n`;
 	}
