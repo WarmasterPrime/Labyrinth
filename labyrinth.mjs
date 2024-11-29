@@ -223,7 +223,8 @@ let isDirty = true;
 
 const EMPTY = " ";
 const HERO = "H";
-const LOOT = "$"
+const LOOT = "$";
+const DOOR = "D";
 
 let direction = -1;
 
@@ -234,6 +235,10 @@ const THINGS = [LOOT, EMPTY];
 let eventText = "";
 
 const HP_MAX = 10;
-let entities = {hero: new Entity("Hero", HERO), empty: new Entity("Empty", EMPTY)};
+let entities = {
+	hero: new Entity("Hero", HERO),
+	empty: new Entity("Empty", EMPTY),
+	door: new Entity("Door", DOOR)
+};
 
 export default Labyrinth;
