@@ -13,8 +13,10 @@ class Labyrinth {
 	constructor() {
 		//this.level = undefined;
 		this.#levels = Labyrinth.loadLevelListings();
-		let tmp = FileManager.readMapFile(this.#levels[CONSTANTS.startLevelId]);
-		this.level = tmp;
+		//let tmp = FileManager.readMapFile(this.#levels[CONSTANTS.startLevelId]);
+		this.level = FileManager.readMapFile(this.#levels[CONSTANTS.startLevelId]);
+
+
 		entities.hero.position = this.getHeroPosition();
 	}
 	/**
@@ -58,9 +60,9 @@ class Labyrinth {
 		let drow = 0;
 		let dcol = 0;
 		if (KeyBoardManager.isUpPressed()) {
-			drow = 1;
-		} else if (KeyBoardManager.isDownPressed()) {
 			drow = -1;
+		} else if (KeyBoardManager.isDownPressed()) {
+			drow = 1;
 		}
 		if (KeyBoardManager.isLeftPressed()) {
 			dcol = -1;
@@ -69,9 +71,6 @@ class Labyrinth {
 		}
 		let tRow = entities.hero.position.y + drow; // Predicted Y position.
 		let tcol = entities.hero.position.x + dcol; // Predicted X position.
-
-		console.log(`X: ${tcol}, Y: ${tRow}`);
-		//console.log(THINGS.includes(this.currentLevel[tRow][tcol]));
 
 		if (THINGS.includes(this.currentLevel[tRow][tcol])) { // Is there anything where Hero is moving to
 			let currentItem = this.currentLevel[tRow][tcol];
@@ -82,13 +81,7 @@ class Labyrinth {
 			}
 			// Move the HERO
 			this.moveHeroBy(dcol, drow);
-			console.log("PASSED");
-			//level[entities.hero.position.y][entities.hero.position.x] = EMPTY;
-			//level[tRow][tcol] = entities.hero.display;
 			// Update the HERO
-
-			//entities.hero.position.y = tRow;
-			//entities.hero.position.x = tCol;
 			// Make the draw function draw.
 			isDirty = true;
 		} else {
@@ -103,7 +96,7 @@ class Labyrinth {
 	moveHeroBy(x, y) {
 		let currentHeroPosition = this.getHeroPosition();
 		this.setHero(entities.hero.position.x + x, entities.hero.position.y + y);
-		this.setBlockAt(currentHeroPosition.x, currentHeroPosition.y, entities.empty);
+		this.setBlockAt(currentHeroPosition.x, currentHeroPosition.y, entities.empty.display);
 	}
 	/**
 	 * Sets the player's position on the map.
@@ -122,11 +115,14 @@ class Labyrinth {
 	 * @param {string} entityDisplay The entity to place.
 	 */
 	setBlockAt(x, y, entityDisplay) {
-		console.log(Object.getOwnPropertyDescriptors(this.level));
-		let tmpRow = this.level[y].split("");
-		tmpRow[x] = Labyrinth.#simplify(entityDisplay);
-		this.level[y] = tmpRow;
-		//this.level[y][x] = entityDisplay;
+		
+		let tmpRow = this.currentLevel[y].toString();
+
+		let res = "";
+		for (let i = 0; i < tmpRow.length; i++) {
+			res += i===x ? entityDisplay : tmpRow[i];
+		}
+		this.currentLevel[y] = res;
 	}
 	/**
 	 * Gets the position of the hero in the level map.
@@ -211,8 +207,8 @@ class Labyrinth {
 
 }
 
-const STARTING_LEVEL = CONSTANTS.startLevelId;
-const LEVELS = Labyrinth.loadLevelListings();
+let STARTING_LEVEL = CONSTANTS.startLevelId;
+let LEVELS = Labyrinth.loadLevelListings();
 
 let pallet = {
 	"█": ANSI.COLOR.LIGHT_GRAY,
