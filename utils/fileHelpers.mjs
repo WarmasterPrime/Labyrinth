@@ -10,7 +10,7 @@ class FileManager {
     /**
      * Gets the map file data.
      * @param {any} fileName
-     * @returns
+     * @returns {string[]}
      */
     static readMapFile(fileName) {
         //console.log(`FileName: \"${fileName}\"`);
