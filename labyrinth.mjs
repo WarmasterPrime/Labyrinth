@@ -69,7 +69,7 @@ class Labyrinth {
 			if (currentItem == LOOT) {
 				let loot = Math.round(Math.random() * 7) + 3;
 				entities.hero.cash += loot;
-				eventText = `Player gained ${loot}$`;
+				eventText = `Player gained $${loot}`;
 			}
 			// Move the HERO
 			this.moveHeroBy(dcol, drow);
