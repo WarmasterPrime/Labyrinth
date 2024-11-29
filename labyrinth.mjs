@@ -211,7 +211,6 @@ let pallet = {
 
 let isDirty = true;
 
-const HERO = "H";
 
 let direction = -1;
 
